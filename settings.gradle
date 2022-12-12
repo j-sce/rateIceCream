@@ -1,2 +1,3 @@
 rootProject.name = 'rateIceCream'
+include 'rateIceCreamApp'
 
