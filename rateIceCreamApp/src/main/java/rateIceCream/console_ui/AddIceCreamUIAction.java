@@ -1,6 +1,8 @@
 package rateIceCream.console_ui;
 
-import rateIceCream.services.AddIceCreamService;
+import rateIceCream.core.requests.AddIceCreamRequest;
+import rateIceCream.core.responses.AddIceCreamResponse;
+import rateIceCream.core.services.AddIceCreamService;
 
 import java.util.Scanner;
 
@@ -18,9 +20,15 @@ public class AddIceCreamUIAction implements UIAction {
         String iceCreamName = scanner.nextLine();
         System.out.println("Enter ice cream producer: ");
         String iceCreamProducer = scanner.nextLine();
-        System.out.println("Enter ice cream volume in ml: ");
+        System.out.println("Enter ice cream barcode: ");
         long iceCreamVolume = Long.parseLong(scanner.nextLine());
-        addIceCreamService.execute(iceCreamName, iceCreamProducer, iceCreamVolume);
-        System.out.println("Your ice cream was successfully added to the list.");
+        AddIceCreamRequest request = new AddIceCreamRequest(iceCreamName, iceCreamProducer, iceCreamVolume);
+        AddIceCreamResponse response = addIceCreamService.execute(request);
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+        } else {
+            System.out.println("Your ice cream was successfully added to the list.");
+            System.out.println("New ice cream ID: " + response.getNewIceCream().getId());
+        }
     }
 }

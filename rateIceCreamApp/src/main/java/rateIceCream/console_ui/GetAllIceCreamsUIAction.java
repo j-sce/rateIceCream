@@ -1,7 +1,8 @@
 package rateIceCream.console_ui;
 
-import rateIceCream.database.Database;
-import rateIceCream.services.GetAllIceCreamsService;
+import rateIceCream.core.requests.GetAllIceCreamsRequest;
+import rateIceCream.core.responses.GetAllIceCreamsResponse;
+import rateIceCream.core.services.GetAllIceCreamsService;
 
 public class GetAllIceCreamsUIAction implements UIAction {
 
@@ -14,7 +15,9 @@ public class GetAllIceCreamsUIAction implements UIAction {
     @Override
     public void execute() {
         System.out.println("Ice cream list: ");
-        getAllIceCreamsService.execute().forEach(System.out::println);
+        GetAllIceCreamsRequest request = new GetAllIceCreamsRequest();
+        GetAllIceCreamsResponse response = getAllIceCreamsService.execute(request);
+        response.getIceCreams().forEach(System.out::println);
         System.out.println("-------- End of ice cream list. --------");
     }
 }
