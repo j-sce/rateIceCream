@@ -3,31 +3,31 @@ package rateIceCream.core.requests;
 public class SearchIceCreamRequest {
     private String name;
     private String producer;
-    private long barcode;
+    private String barcode;
     private Ordering ordering;
     private Paging paging;
 
-    public SearchIceCreamRequest(String name, String producer, long barcode) {
+    public SearchIceCreamRequest(String name, String producer, String barcode) {
         this.name = name;
         this.producer = producer;
         this.barcode = barcode;
     }
 
-    public SearchIceCreamRequest(String name, String producer, long barcode, Ordering ordering) {
+    public SearchIceCreamRequest(String name, String producer, String barcode, Ordering ordering) {
         this.name = name;
         this.producer = producer;
         this.barcode = barcode;
         this.ordering = ordering;
     }
 
-    public SearchIceCreamRequest(String name, String producer, long barcode, Paging paging) {
+    public SearchIceCreamRequest(String name, String producer, String barcode, Paging paging) {
         this.name = name;
         this.producer = producer;
         this.barcode = barcode;
         this.paging = paging;
     }
 
-    public SearchIceCreamRequest(String name, String producer, long barcode, Ordering ordering, Paging paging) {
+    public SearchIceCreamRequest(String name, String producer, String barcode, Ordering ordering, Paging paging) {
         this.name = name;
         this.producer = producer;
         this.barcode = barcode;
@@ -43,7 +43,7 @@ public class SearchIceCreamRequest {
         return producer;
     }
 
-    public long getBarcode() {
+    public String getBarcode() {
         return barcode;
     }
 
@@ -56,7 +56,7 @@ public class SearchIceCreamRequest {
     }
 
     public boolean isBarcodeProvided() {
-        return this.barcode != 0;
+        return this.barcode != null && !this.barcode.isEmpty();
     }
 
     public Ordering getOrdering() {

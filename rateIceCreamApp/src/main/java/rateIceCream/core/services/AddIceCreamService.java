@@ -20,7 +20,7 @@ public class AddIceCreamService {
     }
 
     public AddIceCreamResponse execute(AddIceCreamRequest request) {
-        List<CoreError> errors = validator.validate(request, database);
+        List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddIceCreamResponse(errors);
         }

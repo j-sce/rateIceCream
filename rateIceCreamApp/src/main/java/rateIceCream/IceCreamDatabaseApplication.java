@@ -54,25 +54,20 @@ public class IceCreamDatabaseApplication {
 
     public static void executeSelectedMenuItem(int userChoice) {
         switch (userChoice) {
-            case 1: {
+            case 1 -> {
                 addIceCreamUIAction.execute();
-                break;
             }
-            case 2: {
+            case 2 -> {
                 removeIceCreamUIAction.execute();
-                break;
             }
-            case 3: {
+            case 3 -> {
                 getAllIceCreamsUIAction.execute();
-                break;
             }
-            case 4: {
+            case 4 -> {
                 searchIceCreamUIAction.execute();
-                break;
             }
-            case 5: {
+            case 5 -> {
                 exitUIAction.execute();
-                break;
             }
         }
     }

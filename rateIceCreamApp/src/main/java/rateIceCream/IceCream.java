@@ -4,22 +4,22 @@ import java.util.Objects;
 
 public class IceCream {
 
-    private long id;
+    private Long id;
     private String name;
     private String producer;
-    private long barcode;
+    private String barcode;
 
-    public IceCream(String name, String producer, long barcode) {
+    public IceCream(String name, String producer, String barcode) {
         this.name = name;
         this.producer = producer;
         this.barcode = barcode;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,11 +39,11 @@ public class IceCream {
         this.producer = producer;
     }
 
-    public long getBarcode() {
+    public String getBarcode() {
         return barcode;
     }
 
-    public void setBarcode(long barcode) {
+    public void setBarcode(String barcode) {
         this.barcode = barcode;
     }
 

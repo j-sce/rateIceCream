@@ -1,7 +1,6 @@
 package rateIceCream.core.validators;
 
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.Database;
 import rateIceCream.core.requests.AddIceCreamRequest;
 
 import java.util.ArrayList;
@@ -10,12 +9,11 @@ import java.util.Optional;
 
 public class AddIceCreamRequestValidator {
 
-    public List<CoreError> validate(AddIceCreamRequest request, Database database) {
+    public List<CoreError> validate(AddIceCreamRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateName(request).ifPresent(errors::add);
         validateProducer(request).ifPresent(errors::add);
         validateBarcode(request).ifPresent(errors::add);
-        validateUniqueIceCream(request, database).ifPresent(errors::add);
         return errors;
     }
 
@@ -32,14 +30,8 @@ public class AddIceCreamRequestValidator {
     }
 
     private Optional<CoreError> validateBarcode(AddIceCreamRequest request) {
-        return (request.getBarcode() == 0)
-                ? Optional.of(new CoreError("Barcode", "must not be 0!"))
-                : Optional.empty();
-    }
-
-    private Optional<CoreError> validateUniqueIceCream(AddIceCreamRequest request, Database database) {
-        return (database.getAllIceCreams().stream().anyMatch(iceCream -> iceCream.getBarcode() == request.getBarcode()))
-                ? Optional.of(new CoreError("Ice Cream", "is not unique!"))
+        return (request.getBarcode() == null || request.getBarcode().isEmpty())
+                ? Optional.of(new CoreError("Barcode", "must not be empty!"))
                 : Optional.empty();
     }
 

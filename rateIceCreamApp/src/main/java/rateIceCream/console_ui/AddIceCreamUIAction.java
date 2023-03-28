@@ -21,8 +21,8 @@ public class AddIceCreamUIAction implements UIAction {
         System.out.println("Enter ice cream producer: ");
         String iceCreamProducer = scanner.nextLine();
         System.out.println("Enter ice cream barcode: ");
-        long iceCreamVolume = Long.parseLong(scanner.nextLine());
-        AddIceCreamRequest request = new AddIceCreamRequest(iceCreamName, iceCreamProducer, iceCreamVolume);
+        String iceCreamBarcoder = scanner.nextLine();
+        AddIceCreamRequest request = new AddIceCreamRequest(iceCreamName, iceCreamProducer, iceCreamBarcoder);
         AddIceCreamResponse response = addIceCreamService.execute(request);
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));

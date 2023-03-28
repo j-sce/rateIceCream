@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class InMemoryDatabaseImpl implements Database {
 
     private List<IceCream> iceCreams = new ArrayList<>();
-    private long nextId = 1L;
+    private Long nextId = 1L;
 
 
     @Override
@@ -21,7 +21,7 @@ public class InMemoryDatabaseImpl implements Database {
     }
 
     @Override
-    public boolean deleteById(long id) {
+    public boolean deleteById(Long id) {
         boolean isIceCreamRemoved = false;
         Optional<IceCream> iceCreamToDeleteOpt = iceCreams.stream()
                 .filter(iceCream -> iceCream.getId() == (id)).findFirst();
@@ -60,9 +60,9 @@ public class InMemoryDatabaseImpl implements Database {
     }
 
     @Override
-    public List<IceCream> findByBarcode(long barcode) {
+    public List<IceCream> findByBarcode(String barcode) {
         return iceCreams.stream()
-                .filter(iceCream -> iceCream.getBarcode() == barcode)
+                .filter(iceCream -> iceCream.getBarcode().equals(barcode))
                 .collect(Collectors.toList());
     }
 }

@@ -4,9 +4,9 @@ public class AddIceCreamRequest {
 
     private String name;
     private String producer;
-    private long barcode;
+    private String barcode;
 
-    public AddIceCreamRequest(String name, String producer, Long barcode) {
+    public AddIceCreamRequest(String name, String producer, String barcode) {
         this.name = name;
         this.producer = producer;
         this.barcode = barcode;
@@ -20,7 +20,7 @@ public class AddIceCreamRequest {
         return producer;
     }
 
-    public long getBarcode() {
+    public String getBarcode() {
         return barcode;
     }
 }

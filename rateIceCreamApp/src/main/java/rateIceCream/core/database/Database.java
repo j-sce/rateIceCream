@@ -8,7 +8,7 @@ public interface Database {
 
     void save(IceCream iceCream);
 
-    boolean deleteById(long id);
+    boolean deleteById(Long id);
 
     List<IceCream> getAllIceCreams();
 
@@ -18,6 +18,6 @@ public interface Database {
 
     List<IceCream> findByNameAndProducer(String name, String producer);
 
-    List<IceCream> findByBarcode(long barcode);
+    List<IceCream> findByBarcode(String barcode);
 
 }
