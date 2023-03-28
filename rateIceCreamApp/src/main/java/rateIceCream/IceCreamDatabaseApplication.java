@@ -1,31 +1,12 @@
 package rateIceCream;
 
 import rateIceCream.console_ui.*;
-import rateIceCream.core.database.Database;
-import rateIceCream.core.database.InMemoryDatabaseImpl;
-import rateIceCream.core.services.*;
-import rateIceCream.core.validators.AddIceCreamRequestValidator;
-import rateIceCream.core.validators.RemoveIceCreamRequestValidator;
-import rateIceCream.core.validators.SearchIceCreamRequestValidator;
 
 import java.util.Scanner;
 
 public class IceCreamDatabaseApplication {
 
-    private static Database database = new InMemoryDatabaseImpl();
-    private static AddIceCreamRequestValidator addIceCreamValidator = new AddIceCreamRequestValidator();
-    private static AddIceCreamService addIceCreamService = new AddIceCreamService(database, addIceCreamValidator);
-    private static RemoveIceCreamRequestValidator removeIceCreamValidator = new RemoveIceCreamRequestValidator();
-    private static RemoveIceCreamService removeIceCreamService = new RemoveIceCreamService(database, removeIceCreamValidator);
-    private static GetAllIceCreamsService getAllIceCreamsService = new GetAllIceCreamsService(database);
-    private static SearchIceCreamRequestValidator searchIceCreamValidator = new SearchIceCreamRequestValidator();
-    private static SearchIceCreamService searchIceCreamService = new SearchIceCreamService(database, searchIceCreamValidator);
-    private static UIAction addIceCreamUIAction = new AddIceCreamUIAction(addIceCreamService);
-    private static UIAction removeIceCreamUIAction = new RemoveIceCreamUIAction(removeIceCreamService);
-    private static UIAction getAllIceCreamsUIAction = new GetAllIceCreamsUIAction(getAllIceCreamsService);
-    private static UIAction searchIceCreamUIAction = new SearchIceCreamUIAction(searchIceCreamService);
-    private static UIAction exitUIAction = new ExitUIAction();
-
+    private static ApplicationContext applicationContext = new ApplicationContext();
 
     public static void main(String[] args) {
 
@@ -55,18 +36,23 @@ public class IceCreamDatabaseApplication {
     public static void executeSelectedMenuItem(int userChoice) {
         switch (userChoice) {
             case 1 -> {
+                AddIceCreamUIAction addIceCreamUIAction = applicationContext.getBean(AddIceCreamUIAction.class);
                 addIceCreamUIAction.execute();
             }
             case 2 -> {
+                RemoveIceCreamUIAction removeIceCreamUIAction = applicationContext.getBean(RemoveIceCreamUIAction.class);
                 removeIceCreamUIAction.execute();
             }
             case 3 -> {
+                GetAllIceCreamsUIAction getAllIceCreamsUIAction = applicationContext.getBean(GetAllIceCreamsUIAction.class);
                 getAllIceCreamsUIAction.execute();
             }
             case 4 -> {
+                SearchIceCreamUIAction searchIceCreamUIAction = applicationContext.getBean(SearchIceCreamUIAction.class);
                 searchIceCreamUIAction.execute();
             }
             case 5 -> {
+                ExitUIAction exitUIAction = applicationContext.getBean(ExitUIAction.class);
                 exitUIAction.execute();
             }
         }
