@@ -1,5 +1,6 @@
 package rateIceCream.core.validators;
 
+import org.springframework.stereotype.Component;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.requests.AddIceCreamRequest;
 
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class AddIceCreamRequestValidator {
 
     public List<CoreError> validate(AddIceCreamRequest request) {

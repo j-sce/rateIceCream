@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.database.Database;
-import rateIceCream.core.matchers.IceCreamMatcher;
+import rateIceCream.matchers.IceCreamMatcher;
 import rateIceCream.core.requests.AddIceCreamRequest;
 import rateIceCream.core.responses.AddIceCreamResponse;
 import rateIceCream.core.validators.AddIceCreamRequestValidator;

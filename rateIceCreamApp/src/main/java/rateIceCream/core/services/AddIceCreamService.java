@@ -1,6 +1,8 @@
 package rateIceCream.core.services;
 
-import rateIceCream.IceCream;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.database.Database;
 import rateIceCream.core.requests.AddIceCreamRequest;
@@ -9,15 +11,14 @@ import rateIceCream.core.validators.AddIceCreamRequestValidator;
 
 import java.util.List;
 
+@Component
 public class AddIceCreamService {
 
+    @Autowired
     private Database database;
-    private AddIceCreamRequestValidator validator;
 
-    public AddIceCreamService(Database database, AddIceCreamRequestValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
+    @Autowired
+    private AddIceCreamRequestValidator validator;
 
     public AddIceCreamResponse execute(AddIceCreamRequest request) {
         List<CoreError> errors = validator.validate(request);

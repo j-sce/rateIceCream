@@ -1,18 +1,18 @@
 package rateIceCream.console_ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import rateIceCream.core.requests.RemoveIceCreamRequest;
 import rateIceCream.core.responses.RemoveIceCreamResponse;
 import rateIceCream.core.services.RemoveIceCreamService;
 
 import java.util.Scanner;
 
+@Component
 public class RemoveIceCreamUIAction implements UIAction {
 
+    @Autowired
     private RemoveIceCreamService removeIceCreamService;
-
-    public RemoveIceCreamUIAction(RemoveIceCreamService removeIceCreamService) {
-        this.removeIceCreamService = removeIceCreamService;
-    }
 
     @Override
     public void execute() {

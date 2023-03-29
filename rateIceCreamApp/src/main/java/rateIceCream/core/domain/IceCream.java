@@ -1,4 +1,4 @@
-package rateIceCream;
+package rateIceCream.core.domain;
 
 import java.util.Objects;
 

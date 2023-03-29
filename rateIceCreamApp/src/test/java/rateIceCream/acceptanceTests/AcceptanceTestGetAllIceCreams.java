@@ -1,7 +1,10 @@
-package rateIceCream.core.acceptanceTests;
+package rateIceCream.acceptanceTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import rateIceCream.ApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import rateIceCream.config.IceCreamListConfiguration;
 import rateIceCream.core.requests.AddIceCreamRequest;
 import rateIceCream.core.requests.GetAllIceCreamsRequest;
 import rateIceCream.core.responses.GetAllIceCreamsResponse;
@@ -12,7 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AcceptanceTestGetAllIceCreams {
 
-    private ApplicationContext applicationContext = new ApplicationContext();
+    private ApplicationContext applicationContext;
+
+    @BeforeEach
+    public void setup() {
+        applicationContext = new AnnotationConfigApplicationContext(IceCreamListConfiguration.class);
+    }
 
     @Test
     public void shouldReturnCorrectIceCreamList() {

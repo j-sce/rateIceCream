@@ -1,7 +1,7 @@
-package rateIceCream.core.matchers;
+package rateIceCream.matchers;
 
 import org.mockito.ArgumentMatcher;
-import rateIceCream.IceCream;
+import rateIceCream.core.domain.IceCream;
 
 public class IceCreamMatcher implements ArgumentMatcher<IceCream> {
 

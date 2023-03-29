@@ -1,6 +1,8 @@
 package rateIceCream.core.services;
 
-import rateIceCream.IceCream;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.database.Database;
 import rateIceCream.core.requests.Ordering;
@@ -14,15 +16,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class SearchIceCreamService {
 
+    @Autowired
     private Database database;
+    @Autowired
     private SearchIceCreamRequestValidator validator;
-
-    public SearchIceCreamService(Database database, SearchIceCreamRequestValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
 
     public SearchIceCreamResponse execute(SearchIceCreamRequest request) {
         List<CoreError> errors = validator.validate(request);

@@ -1,6 +1,6 @@
 package rateIceCream.core.responses;
 
-import rateIceCream.IceCream;
+import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.CoreResponse;
 
 import java.util.List;

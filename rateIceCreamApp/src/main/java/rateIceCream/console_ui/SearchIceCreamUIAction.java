@@ -1,6 +1,8 @@
 package rateIceCream.console_ui;
 
-import rateIceCream.IceCream;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.requests.Ordering;
 import rateIceCream.core.requests.Paging;
 import rateIceCream.core.requests.SearchIceCreamRequest;
@@ -9,13 +11,11 @@ import rateIceCream.core.services.SearchIceCreamService;
 
 import java.util.Scanner;
 
+@Component
 public class SearchIceCreamUIAction implements UIAction {
 
+    @Autowired
     private SearchIceCreamService searchIceCreamService;
-
-    public SearchIceCreamUIAction(SearchIceCreamService searchIceCreamService) {
-        this.searchIceCreamService = searchIceCreamService;
-    }
 
     @Override
     public void execute() {

@@ -1,12 +1,14 @@
 package rateIceCream;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import rateIceCream.config.IceCreamListConfiguration;
 import rateIceCream.console_ui.*;
 
 import java.util.Scanner;
 
 public class IceCreamDatabaseApplication {
 
-    private static ApplicationContext applicationContext = new ApplicationContext();
+    private static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(IceCreamListConfiguration.class);
 
     public static void main(String[] args) {
 
@@ -35,25 +37,30 @@ public class IceCreamDatabaseApplication {
 
     public static void executeSelectedMenuItem(int userChoice) {
         switch (userChoice) {
-            case 1 -> {
+            case 1: {
                 AddIceCreamUIAction addIceCreamUIAction = applicationContext.getBean(AddIceCreamUIAction.class);
                 addIceCreamUIAction.execute();
+                break;
             }
-            case 2 -> {
+            case 2: {
                 RemoveIceCreamUIAction removeIceCreamUIAction = applicationContext.getBean(RemoveIceCreamUIAction.class);
                 removeIceCreamUIAction.execute();
+                break;
             }
-            case 3 -> {
+            case 3: {
                 GetAllIceCreamsUIAction getAllIceCreamsUIAction = applicationContext.getBean(GetAllIceCreamsUIAction.class);
                 getAllIceCreamsUIAction.execute();
+                break;
             }
-            case 4 -> {
+            case 4: {
                 SearchIceCreamUIAction searchIceCreamUIAction = applicationContext.getBean(SearchIceCreamUIAction.class);
                 searchIceCreamUIAction.execute();
+                break;
             }
-            case 5 -> {
+            case 5: {
                 ExitUIAction exitUIAction = applicationContext.getBean(ExitUIAction.class);
                 exitUIAction.execute();
+                break;
             }
         }
     }

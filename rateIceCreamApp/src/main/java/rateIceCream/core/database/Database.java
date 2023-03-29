@@ -1,6 +1,6 @@
 package rateIceCream.core.database;
 
-import rateIceCream.IceCream;
+import rateIceCream.core.domain.IceCream;
 
 import java.util.List;
 

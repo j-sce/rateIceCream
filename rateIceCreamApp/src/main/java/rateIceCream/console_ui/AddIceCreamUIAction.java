@@ -1,17 +1,17 @@
 package rateIceCream.console_ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import rateIceCream.core.requests.AddIceCreamRequest;
 import rateIceCream.core.responses.AddIceCreamResponse;
 import rateIceCream.core.services.AddIceCreamService;
 
 import java.util.Scanner;
 
+@Component
 public class AddIceCreamUIAction implements UIAction {
+    @Autowired
     private AddIceCreamService addIceCreamService;
-
-    public AddIceCreamUIAction(AddIceCreamService addIceCreamService) {
-        this.addIceCreamService = addIceCreamService;
-    }
 
     @Override
     public void execute() {

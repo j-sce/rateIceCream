@@ -6,7 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import rateIceCream.IceCream;
+import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.database.Database;
 import rateIceCream.core.requests.GetAllIceCreamsRequest;
 import rateIceCream.core.responses.GetAllIceCreamsResponse;
