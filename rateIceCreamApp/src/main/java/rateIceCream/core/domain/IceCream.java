@@ -9,6 +9,9 @@ public class IceCream {
     private String producer;
     private String barcode;
 
+    public IceCream() {
+    }
+
     public IceCream(String name, String producer, String barcode) {
         this.name = name;
         this.producer = producer;

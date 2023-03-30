@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import rateIceCream.DatabaseCleaner;
 import rateIceCream.config.IceCreamListConfiguration;
 import rateIceCream.core.requests.AddIceCreamRequest;
 import rateIceCream.core.requests.Ordering;
@@ -22,6 +23,7 @@ public class AcceptanceTestSearchIceCream {
     @BeforeEach
     public void setup() {
         applicationContext = new AnnotationConfigApplicationContext(IceCreamListConfiguration.class);
+        getDatabaseCleaner().clean();
     }
 
     @Test
@@ -109,4 +111,7 @@ public class AcceptanceTestSearchIceCream {
         return applicationContext.getBean(SearchIceCreamService.class);
     }
 
+    private DatabaseCleaner getDatabaseCleaner() {
+        return applicationContext.getBean(DatabaseCleaner.class);
+    }
 }
