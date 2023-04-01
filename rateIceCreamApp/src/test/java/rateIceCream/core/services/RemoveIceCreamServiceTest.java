@@ -7,10 +7,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.Database;
-import rateIceCream.core.requests.RemoveIceCreamRequest;
-import rateIceCream.core.responses.RemoveIceCreamResponse;
-import rateIceCream.core.validators.RemoveIceCreamRequestValidator;
+import rateIceCream.core.database.IceCreamRepository;
+import rateIceCream.core.requests.iceCreamRequests.RemoveIceCreamRequest;
+import rateIceCream.core.responses.iceCreamResponses.RemoveIceCreamResponse;
+import rateIceCream.core.services.iceCreamServices.RemoveIceCreamService;
+import rateIceCream.core.validators.iceCreamValidators.RemoveIceCreamRequestValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
 class RemoveIceCreamServiceTest {
     @Mock
-    private Database database;
+    private IceCreamRepository iceCreamRepository;
     @Mock
     private RemoveIceCreamRequestValidator validator;
     @InjectMocks
@@ -43,7 +44,7 @@ class RemoveIceCreamServiceTest {
     @Test
     public void shouldDeleteIceCreamByIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(database.deleteById(1L)).thenReturn(true);
+        Mockito.when(iceCreamRepository.deleteById(1L)).thenReturn(true);
         RemoveIceCreamRequest request = new RemoveIceCreamRequest(1L);
         RemoveIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());

@@ -8,12 +8,13 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.Database;
+import rateIceCream.core.database.IceCreamRepository;
 import rateIceCream.core.requests.Ordering;
 import rateIceCream.core.requests.Paging;
-import rateIceCream.core.requests.SearchIceCreamRequest;
-import rateIceCream.core.responses.SearchIceCreamResponse;
-import rateIceCream.core.validators.SearchIceCreamRequestValidator;
+import rateIceCream.core.requests.iceCreamRequests.SearchIceCreamRequest;
+import rateIceCream.core.responses.iceCreamResponses.SearchIceCreamResponse;
+import rateIceCream.core.services.iceCreamServices.SearchIceCreamService;
+import rateIceCream.core.validators.iceCreamValidators.SearchIceCreamRequestValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 public class SearchIceCreamServiceTest {
 
     @Mock
-    private Database database;
+    private IceCreamRepository iceCreamRepository;
     @Mock
     private SearchIceCreamRequestValidator validator;
     @InjectMocks
@@ -45,7 +46,7 @@ public class SearchIceCreamServiceTest {
 
         Mockito.verify(validator).validate(request);
         Mockito.verify(validator).validate(any());
-        Mockito.verifyNoInteractions(database);
+        Mockito.verifyNoInteractions(iceCreamRepository);
     }
 
     @Test
@@ -55,7 +56,7 @@ public class SearchIceCreamServiceTest {
 
         List<IceCream> iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream("Name", "Producer", "1234567890123"));
-        Mockito.when(database.findByName("Name")).thenReturn(iceCreams);
+        Mockito.when(iceCreamRepository.findByName("Name")).thenReturn(iceCreams);
 
         SearchIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -72,7 +73,7 @@ public class SearchIceCreamServiceTest {
 
         List<IceCream> iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream("Name", "Producer", "1234567890123"));
-        Mockito.when(database.findByProducer("Producer")).thenReturn(iceCreams);
+        Mockito.when(iceCreamRepository.findByProducer("Producer")).thenReturn(iceCreams);
 
         SearchIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -89,7 +90,7 @@ public class SearchIceCreamServiceTest {
 
         List<IceCream> iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream("Name", "Producer", "1234567890123"));
-        Mockito.when(database.findByNameAndProducer("Name", "Producer")).thenReturn(iceCreams);
+        Mockito.when(iceCreamRepository.findByNameAndProducer("Name", "Producer")).thenReturn(iceCreams);
 
         SearchIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -106,7 +107,7 @@ public class SearchIceCreamServiceTest {
 
         List<IceCream> iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream("Name", "Producer", "1234567890123"));
-        Mockito.when(database.findByBarcode("1234567890123")).thenReturn(iceCreams);
+        Mockito.when(iceCreamRepository.findByBarcode("1234567890123")).thenReturn(iceCreams);
 
         SearchIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -125,7 +126,7 @@ public class SearchIceCreamServiceTest {
         List<IceCream> iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream("Name", "Producer1", "1234567890123"));
         iceCreams.add(new IceCream("Name", "Producer2", "2345678901234"));
-        Mockito.when(database.findByName("Name")).thenReturn(iceCreams);
+        Mockito.when(iceCreamRepository.findByName("Name")).thenReturn(iceCreams);
 
         SearchIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -145,7 +146,7 @@ public class SearchIceCreamServiceTest {
         List<IceCream> iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream("Name1", "Producer", "1234567890123"));
         iceCreams.add(new IceCream("Name2", "Producer", "2345678901234"));
-        Mockito.when(database.findByProducer("Producer")).thenReturn(iceCreams);
+        Mockito.when(iceCreamRepository.findByProducer("Producer")).thenReturn(iceCreams);
 
         SearchIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -165,7 +166,7 @@ public class SearchIceCreamServiceTest {
         List<IceCream> iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream("Name1", "Producer", "1234567890123"));
         iceCreams.add(new IceCream("Name2", "Producer", "2345678901234"));
-        Mockito.when(database.findByProducer("Producer")).thenReturn(iceCreams);
+        Mockito.when(iceCreamRepository.findByProducer("Producer")).thenReturn(iceCreams);
 
         SearchIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());

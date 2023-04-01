@@ -9,6 +9,7 @@ import rateIceCream.console_ui.*;
 public class IceCreamDatabaseApplication {
 
     public static void main(String[] args) {
+
         ApplicationContext applicationContext = createApplicationContext();
         AppMenu appMenu = applicationContext.getBean(AppMenu.class);
         while (true) {

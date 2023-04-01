@@ -10,11 +10,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.Database;
+import rateIceCream.core.database.IceCreamRepository;
+import rateIceCream.core.services.iceCreamServices.AddIceCreamService;
 import rateIceCream.matchers.IceCreamMatcher;
-import rateIceCream.core.requests.AddIceCreamRequest;
-import rateIceCream.core.responses.AddIceCreamResponse;
-import rateIceCream.core.validators.AddIceCreamRequestValidator;
+import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
+import rateIceCream.core.responses.iceCreamResponses.AddIceCreamResponse;
+import rateIceCream.core.validators.iceCreamValidators.AddIceCreamRequestValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import static org.mockito.ArgumentMatchers.argThat;
 @ExtendWith(MockitoExtension.class)
 public class AddIceCreamServiceTest {
     @Mock
-    private Database database;
+    private IceCreamRepository iceCreamRepository;
     @Mock
     private AddIceCreamRequestValidator validator;
     @InjectMocks private AddIceCreamService service;
@@ -44,7 +45,7 @@ public class AddIceCreamServiceTest {
         assertEquals(response.getErrors().get(0).getField(), "Name");
         assertEquals(response.getErrors().get(0).getMessage(), "must not be empty!");
 
-        Mockito.verifyNoInteractions(database);
+        Mockito.verifyNoInteractions(iceCreamRepository);
     }
 
     @Test
@@ -53,7 +54,7 @@ public class AddIceCreamServiceTest {
         AddIceCreamRequest request = new AddIceCreamRequest("Name", "Producer", "1234567890123");
         AddIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        Mockito.verify(database).save(
+        Mockito.verify(iceCreamRepository).save(
                 argThat(new IceCreamMatcher("Name", "Producer", "1234567890123")));
     }
 

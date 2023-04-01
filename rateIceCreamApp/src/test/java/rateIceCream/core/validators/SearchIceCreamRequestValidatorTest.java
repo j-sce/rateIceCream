@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.requests.Ordering;
 import rateIceCream.core.requests.Paging;
-import rateIceCream.core.requests.SearchIceCreamRequest;
+import rateIceCream.core.requests.iceCreamRequests.SearchIceCreamRequest;
+import rateIceCream.core.validators.iceCreamValidators.SearchIceCreamRequestValidator;
 
 import java.util.List;
 

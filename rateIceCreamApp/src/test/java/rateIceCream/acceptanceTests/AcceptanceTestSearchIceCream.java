@@ -6,13 +6,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import rateIceCream.DatabaseCleaner;
 import rateIceCream.config.IceCreamListConfiguration;
-import rateIceCream.core.requests.AddIceCreamRequest;
+import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
 import rateIceCream.core.requests.Ordering;
 import rateIceCream.core.requests.Paging;
-import rateIceCream.core.requests.SearchIceCreamRequest;
-import rateIceCream.core.responses.SearchIceCreamResponse;
-import rateIceCream.core.services.AddIceCreamService;
-import rateIceCream.core.services.SearchIceCreamService;
+import rateIceCream.core.requests.iceCreamRequests.SearchIceCreamRequest;
+import rateIceCream.core.responses.iceCreamResponses.SearchIceCreamResponse;
+import rateIceCream.core.services.iceCreamServices.AddIceCreamService;
+import rateIceCream.core.services.iceCreamServices.SearchIceCreamService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

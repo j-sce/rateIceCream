@@ -1,11 +1,23 @@
 package rateIceCream.core.domain;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "producers")
 public class Producer {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+
+    public Producer() {
+    }
 
     public Producer(String name) {
         this.name = name;

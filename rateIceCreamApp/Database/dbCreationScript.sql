@@ -24,6 +24,33 @@ CREATE TABLE IF NOT EXISTS `ice_creams` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 1001;
 
+CREATE TABLE IF NOT EXISTS `producer_ice_creams` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `producer_id` BIGINT NOT NULL,
+  `ice_cream_id` BIGINT NOT NULL,
+   PRIMARY KEY (`id`)
+   FOREIGN KEY (`producer_id`) REFERENCES `producers`(`id`)
+   FOREIGN KEY (`ice_cream_id`) REFERENCES `ice_creams`(`id`)
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1001;
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(100) NOT NULL UNIQUE,
+  `password` VARCHAR(100) NOT NULL,
+  `role` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1001;
+
+CREATE INDEX ix_producer_ice_creams_producer_id
+ON producer_ice_creams (producer_id);
+
+CREATE INDEX ix_producer_ice_creams_ice_cream_id
+ON producer_ice_creams (ice_cream_id);
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

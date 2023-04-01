@@ -1,12 +1,26 @@
 package rateIceCream.core.domain;
 
+import javax.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "ice_creams")
 public class IceCream {
 
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "producer", nullable = false)
     private String producer;
+
+    @Column(name = "barcode", nullable = false)
     private String barcode;
 
     public IceCream() {

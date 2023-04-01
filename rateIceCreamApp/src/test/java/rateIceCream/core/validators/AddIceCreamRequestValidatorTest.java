@@ -3,7 +3,8 @@ package rateIceCream.core.validators;
 import org.junit.jupiter.api.Test;
 import rateIceCream.core.CoreError;
 
-import rateIceCream.core.requests.AddIceCreamRequest;
+import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
+import rateIceCream.core.validators.iceCreamValidators.AddIceCreamRequestValidator;
 
 import java.util.List;
 
