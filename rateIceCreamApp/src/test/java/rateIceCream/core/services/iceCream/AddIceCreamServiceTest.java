@@ -1,4 +1,4 @@
-package rateIceCream.core.services;
+package rateIceCream.core.services.iceCream;
 
 
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ public class AddIceCreamServiceTest {
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFails() {
-        AddIceCreamRequest request = new AddIceCreamRequest(null, "Producer", "1234567890123");
+        AddIceCreamRequest request = new AddIceCreamRequest(null, "Producer1", "0123456789012");
         List<CoreError> errors = new ArrayList<>();
         errors.add(new CoreError("Name", "must not be empty!"));
         Mockito.when(validator.validate(request)).thenReturn(errors);
@@ -51,11 +51,11 @@ public class AddIceCreamServiceTest {
     @Test
     public void shouldAddIceCreamToDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        AddIceCreamRequest request = new AddIceCreamRequest("Name", "Producer", "1234567890123");
+        AddIceCreamRequest request = new AddIceCreamRequest("Name", "Producer1", "0123456789012");
         AddIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         Mockito.verify(iceCreamRepository).save(
-                argThat(new IceCreamMatcher("Name", "Producer", "1234567890123")));
+                argThat(new IceCreamMatcher("Name", "Producer1", "1234567890123")));
     }
 
 }

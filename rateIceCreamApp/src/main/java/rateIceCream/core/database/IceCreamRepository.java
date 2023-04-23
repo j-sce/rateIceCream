@@ -20,4 +20,6 @@ public interface IceCreamRepository {
 
     List<IceCream> findByBarcode(String barcode);
 
+    IceCream findById(Long id);
+
 }

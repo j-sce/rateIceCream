@@ -15,10 +15,10 @@ import java.util.List;
 public class RegisterUserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    RegisterUserRequestValidator validator;
+    private RegisterUserRequestValidator validator;
 
     public RegisterUserResponse execute(RegisterUserRequest request) {
         List<CoreError> errors = validator.validate(request);

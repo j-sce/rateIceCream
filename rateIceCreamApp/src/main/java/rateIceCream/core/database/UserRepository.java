@@ -20,6 +20,10 @@ public class UserRepository {
         sessionFactory.getCurrentSession().save(user);
     }
 
+    public User findById(Long id){
+        return sessionFactory.getCurrentSession().get(User.class, id);
+    }
+
     public List<User> findByLogin(String login) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT u FROM User u WHERE login = :login");

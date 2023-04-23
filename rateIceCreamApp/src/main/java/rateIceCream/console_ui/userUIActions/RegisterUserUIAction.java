@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import rateIceCream.console_ui.UIAction;
 import rateIceCream.core.domain.UserRole;
-import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
 import rateIceCream.core.requests.userRequests.RegisterUserRequest;
-import rateIceCream.core.responses.iceCreamResponses.AddIceCreamResponse;
 import rateIceCream.core.responses.userResponses.RegisterUserResponse;
 import rateIceCream.core.services.userServices.RegisterUserService;
 

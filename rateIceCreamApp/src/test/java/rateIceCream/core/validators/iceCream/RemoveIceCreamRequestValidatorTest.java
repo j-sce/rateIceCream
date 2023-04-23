@@ -1,4 +1,4 @@
-package rateIceCream.core.validators;
+package rateIceCream.core.validators.iceCream;
 
 import org.junit.jupiter.api.Test;
 import rateIceCream.core.CoreError;

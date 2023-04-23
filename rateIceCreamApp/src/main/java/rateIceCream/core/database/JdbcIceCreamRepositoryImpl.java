@@ -61,4 +61,11 @@ public class JdbcIceCreamRepositoryImpl implements IceCreamRepository {
         Object[] args = new Object[]{barcode};
         return jdbcTemplate.query(sql, args, new IceCreamRowMapper());
     }
+
+    @Override
+    public IceCream findById(Long id) {
+        String sql = "SELECT * FROM ice_creams WHERE id = ?";
+        Object[] args = new Object[]{id};
+        return jdbcTemplate.queryForObject(sql, args, new IceCreamRowMapper());
+    }
 }

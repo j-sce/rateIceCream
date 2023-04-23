@@ -1,9 +1,7 @@
 package rateIceCream.core.validators.iceCreamValidators;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRepository;
 import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
 
 import java.util.ArrayList;
@@ -13,15 +11,11 @@ import java.util.Optional;
 @Component
 public class AddIceCreamRequestValidator {
 
-    @Autowired
-    IceCreamRepository iceCreamRepository;
-
     public List<CoreError> validate(AddIceCreamRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateName(request).ifPresent(errors::add);
         validateProducer(request).ifPresent(errors::add);
         validateBarcode(request).ifPresent(errors::add);
-        validateUnique(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -40,11 +34,6 @@ public class AddIceCreamRequestValidator {
     private Optional<CoreError> validateBarcode(AddIceCreamRequest request) {
         return (request.getBarcode() == null || request.getBarcode().isEmpty())
                 ? Optional.of(new CoreError("Barcode", "must not be empty!"))
-                : Optional.empty();
-    }
-    private Optional<CoreError> validateUnique(AddIceCreamRequest request) {
-        return (iceCreamRepository.findByBarcode(request.getBarcode()).size() > 0)
-                ? Optional.of(new CoreError("Barcode", "is not unique!"))
                 : Optional.empty();
     }
 }

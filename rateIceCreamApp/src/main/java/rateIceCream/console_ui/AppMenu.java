@@ -7,6 +7,7 @@ import rateIceCream.console_ui.iceCreamUIActions.AddIceCreamUIAction;
 import rateIceCream.console_ui.iceCreamUIActions.GetAllIceCreamsUIAction;
 import rateIceCream.console_ui.iceCreamUIActions.RemoveIceCreamUIAction;
 import rateIceCream.console_ui.iceCreamUIActions.SearchIceCreamUIAction;
+import rateIceCream.console_ui.ratingUIActions.AdUserIceCreamRatingUIAction;
 import rateIceCream.console_ui.userUIActions.RegisterUserUIAction;
 
 import java.util.HashMap;
@@ -29,6 +30,7 @@ public class AppMenu {
         menuNumberToUIActionMap.put(5, findUIAction(uiActions, ExitUIAction.class));
         menuNumberToUIActionMap.put(6, findUIAction(uiActions, AddProducerUIAction.class));
         menuNumberToUIActionMap.put(7, findUIAction(uiActions, RegisterUserUIAction.class));
+        menuNumberToUIActionMap.put(8, findUIAction(uiActions, AdUserIceCreamRatingUIAction.class));
     }
 
     private UIAction findUIAction(List<UIAction> uiActions, Class uiActionClass) {
@@ -47,6 +49,7 @@ public class AppMenu {
         System.out.println("5. Exit");
         System.out.println("6. Add new producer");
         System.out.println("7. Register new user");
+        System.out.println("8. Add ice cream rating");
         System.out.println();
     }
 

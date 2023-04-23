@@ -1,4 +1,4 @@
-package rateIceCream.acceptanceTests;
+package rateIceCream.acceptanceTests.iceCream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ public class AcceptanceTestRemoveIceCream {
         GetAllIceCreamsResponse response = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());
         assertEquals(response.getIceCreams().size(), 2);
 
-        RemoveIceCreamRequest removeIceCreamRequest = new RemoveIceCreamRequest(1035L);
+        RemoveIceCreamRequest removeIceCreamRequest = new RemoveIceCreamRequest(1005L);
         getRemoveIceCreamService().execute(removeIceCreamRequest);
         response = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());
         assertEquals(response.getIceCreams().size(), 1);

@@ -1,4 +1,4 @@
-package rateIceCream.acceptanceTests;
+package rateIceCream.acceptanceTests.iceCream;
 
 
 import org.junit.jupiter.api.BeforeEach;
@@ -50,14 +50,14 @@ public class AcceptanceTestAddIceCream {
 
     @Test
     public void shouldNotAddSecondIceCreamToList() {
-        AddIceCreamRequest addIceCreamRequest = new AddIceCreamRequest("Name1", "Producer1", "1234567890123");
+        AddIceCreamRequest addIceCreamRequest = new AddIceCreamRequest("Name5", "Producer1", "1234567890123");
         getAddIceCreamService().execute(addIceCreamRequest);
 
         GetAllIceCreamsResponse getAllIceCreamsResponse = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());
         assertEquals(getAllIceCreamsResponse.getIceCreams().size(), 1);
 
 
-        AddIceCreamRequest addIceCreamRequest2 = new AddIceCreamRequest(null, "Producer1", "1234567890123");
+        AddIceCreamRequest addIceCreamRequest2 = new AddIceCreamRequest(null, "Producer1", "11111111111111");
         getAddIceCreamService().execute(addIceCreamRequest2);
         AddIceCreamResponse addIceCreamResponse = getAddIceCreamService().execute(addIceCreamRequest2);
         getAllIceCreamsResponse = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());

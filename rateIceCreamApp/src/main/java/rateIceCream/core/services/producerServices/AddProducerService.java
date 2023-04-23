@@ -17,10 +17,10 @@ import java.util.List;
 public class AddProducerService {
 
     @Autowired
-    ProducerRepository producerRepository;
+    private ProducerRepository producerRepository;
 
     @Autowired
-    AddProducerRequestValidator validator;
+    private AddProducerRequestValidator validator;
 
     public AddProducerResponse execute(AddProducerRequest request) {
         List<CoreError> errors = validator.validate(request);

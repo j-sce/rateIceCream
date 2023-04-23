@@ -69,4 +69,9 @@ public class OrmIceCreamRepositoryImpl implements IceCreamRepository {
         query.setParameter("barcode", barcode);
         return query.getResultList();
     }
+
+    @Override
+    public IceCream findById(Long id) {
+        return sessionFactory.getCurrentSession().get(IceCream.class, id);
+    }
 }

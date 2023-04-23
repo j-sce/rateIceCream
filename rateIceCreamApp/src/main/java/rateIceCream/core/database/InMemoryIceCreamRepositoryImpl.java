@@ -25,7 +25,7 @@ public class InMemoryIceCreamRepositoryImpl implements IceCreamRepository {
     public boolean deleteById(Long id) {
         boolean isIceCreamRemoved = false;
         Optional<IceCream> iceCreamToDeleteOpt = iceCreams.stream()
-                .filter(iceCream -> iceCream.getId() == (id)).findFirst();
+                .filter(iceCream -> iceCream.getId().equals(id)).findFirst();
         if (iceCreamToDeleteOpt.isPresent()) {
             IceCream iceCreamToRemove = iceCreamToDeleteOpt.get();
             isIceCreamRemoved = iceCreams.remove(iceCreamToRemove);
@@ -65,5 +65,12 @@ public class InMemoryIceCreamRepositoryImpl implements IceCreamRepository {
         return iceCreams.stream()
                 .filter(iceCream -> iceCream.getBarcode().equals(barcode))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public IceCream findById(Long id) {
+        return iceCreams.stream()
+                .filter(iceCream -> iceCream.getId().equals(id))
+                .findFirst().get();
     }
 }

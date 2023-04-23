@@ -1,4 +1,4 @@
-package rateIceCream.acceptanceTests;
+package rateIceCream.acceptanceTests.iceCream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

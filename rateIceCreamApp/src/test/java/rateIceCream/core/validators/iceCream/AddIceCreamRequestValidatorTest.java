@@ -1,4 +1,4 @@
-package rateIceCream.core.validators;
+package rateIceCream.core.validators.iceCream;
 
 import org.junit.jupiter.api.Test;
 import rateIceCream.core.CoreError;
@@ -47,5 +47,4 @@ class AddIceCreamRequestValidatorTest {
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
-
 }
