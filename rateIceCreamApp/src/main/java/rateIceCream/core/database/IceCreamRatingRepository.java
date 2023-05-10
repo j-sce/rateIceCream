@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import rateIceCream.core.domain.UserIceCreamRating;
+import rateIceCream.core.domain.IceCreamRating;
 
 
 @Component
@@ -14,13 +14,13 @@ public class IceCreamRatingRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void save(UserIceCreamRating userIceCreamRating) {
-        sessionFactory.getCurrentSession().save(userIceCreamRating);
+    public void save(IceCreamRating iceCreamRating) {
+        sessionFactory.getCurrentSession().save(iceCreamRating);
     }
 
-    public UserIceCreamRating getById(Long id) {
+    public IceCreamRating getById(Long id) {
         return sessionFactory.getCurrentSession()
-                .get(UserIceCreamRating.class, id);
+                .get(IceCreamRating.class, id);
     }
 
 }

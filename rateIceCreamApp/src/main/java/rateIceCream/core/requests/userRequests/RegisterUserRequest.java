@@ -9,6 +9,9 @@ public class RegisterUserRequest {
 
     private UserRole userRole;
 
+    public RegisterUserRequest() {
+    }
+
     public RegisterUserRequest(String login, String password, UserRole userRole) {
         this.login = login;
         this.password = password;
@@ -25,5 +28,17 @@ public class RegisterUserRequest {
 
     public UserRole getUserRole() {
         return userRole;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

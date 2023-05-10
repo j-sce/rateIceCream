@@ -21,7 +21,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "rateIceCream")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
-public class IceCreamListConfiguration {
+public class SpringCoreConfiguration {
 
     @Value("${jdbc.url}")
     private String jdbcUrl;

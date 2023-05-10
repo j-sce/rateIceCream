@@ -10,6 +10,9 @@ public class SearchIceCreamRequest {
     private Ordering ordering;
     private Paging paging;
 
+    public SearchIceCreamRequest() {
+    }
+
     public SearchIceCreamRequest(String name, String producer, String barcode) {
         this.name = name;
         this.producer = producer;
@@ -68,5 +71,25 @@ public class SearchIceCreamRequest {
 
     public Paging getPaging() {
         return paging;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setOrdering(Ordering ordering) {
+        this.ordering = ordering;
+    }
+
+    public void setPaging(Paging paging) {
+        this.paging = paging;
     }
 }

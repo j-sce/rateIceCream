@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import rateIceCream.DatabaseCleaner;
-import rateIceCream.config.IceCreamListConfiguration;
+import rateIceCream.config.SpringCoreConfiguration;
 import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
 import rateIceCream.core.requests.iceCreamRequests.GetAllIceCreamsRequest;
 import rateIceCream.core.responses.iceCreamResponses.AddIceCreamResponse;
@@ -23,7 +23,7 @@ public class AcceptanceTestAddIceCream {
 
     @BeforeEach
     public void setup() {
-        applicationContext = new AnnotationConfigApplicationContext(IceCreamListConfiguration.class);
+        applicationContext = new AnnotationConfigApplicationContext(SpringCoreConfiguration.class);
         getDatabaseCleaner().clean();
     }
 

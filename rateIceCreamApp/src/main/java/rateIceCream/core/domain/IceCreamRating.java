@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user_ice_cream_ratings")
-public class UserIceCreamRating {
+public class IceCreamRating {
 
     @Id
     @Column(name = "id")
@@ -24,7 +24,7 @@ public class UserIceCreamRating {
     @Column(name = "user_ice_cream_rating")
     private Long rating;
 
-    public UserIceCreamRating(User user, IceCream iceCream, Long rating) {
+    public IceCreamRating(User user, IceCream iceCream, Long rating) {
         this.user = user;
         this.iceCream = iceCream;
         this.rating = rating;
@@ -66,7 +66,7 @@ public class UserIceCreamRating {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserIceCreamRating that = (UserIceCreamRating) o;
+        IceCreamRating that = (IceCreamRating) o;
         return Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(iceCream, that.iceCream) && Objects.equals(rating, that.rating);
     }
 

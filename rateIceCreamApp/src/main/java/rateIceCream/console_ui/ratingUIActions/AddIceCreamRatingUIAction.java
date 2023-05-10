@@ -6,22 +6,22 @@ import rateIceCream.console_ui.UIAction;
 import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.domain.User;
 import rateIceCream.core.requests.iceCreamRequests.GetIceCreamRequest;
-import rateIceCream.core.requests.ratingRequests.AddUserIceCreamRatingRequest;
+import rateIceCream.core.requests.ratingRequests.AddIceCreamRatingRequest;
 import rateIceCream.core.requests.userRequests.GetUserRequest;
 import rateIceCream.core.responses.iceCreamResponses.GetIceCreamResponse;
-import rateIceCream.core.responses.ratingResponses.AddUserIceCreamRatingResponse;
+import rateIceCream.core.responses.ratingResponses.AddIceCreamRatingResponse;
 import rateIceCream.core.responses.userResponses.GetUserResponse;
 import rateIceCream.core.services.iceCreamServices.GetIceCreamService;
-import rateIceCream.core.services.ratingServices.AddUserIceCreamRatingService;
+import rateIceCream.core.services.ratingServices.AddIceCreamRatingService;
 import rateIceCream.core.services.userServices.GetUserService;
 
 import java.util.Scanner;
 
 @Component
-public class AdUserIceCreamRatingUIAction implements UIAction {
+public class AddIceCreamRatingUIAction implements UIAction {
 
     @Autowired
-    private AddUserIceCreamRatingService addUserIceCreamRatingService;
+    private AddIceCreamRatingService addIceCreamRatingService;
 
     @Autowired
     private GetUserService getUserService;
@@ -53,13 +53,13 @@ public class AdUserIceCreamRatingUIAction implements UIAction {
         }
         IceCream iceCream = getIceCreamResponse.getIceCream();
 
-        AddUserIceCreamRatingRequest addUserIceCreamRatingRequest = new AddUserIceCreamRatingRequest(user, iceCream, rating);
-        AddUserIceCreamRatingResponse addUserIceCreamRatingResponse = addUserIceCreamRatingService.execute(addUserIceCreamRatingRequest);
-        if (addUserIceCreamRatingResponse.hasErrors()) {
-            addUserIceCreamRatingResponse.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+        AddIceCreamRatingRequest addIceCreamRatingRequest = new AddIceCreamRatingRequest(user, iceCream, rating);
+        AddIceCreamRatingResponse addIceCreamRatingResponse = addIceCreamRatingService.execute(addIceCreamRatingRequest);
+        if (addIceCreamRatingResponse.hasErrors()) {
+            addIceCreamRatingResponse.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
             System.out.println("New ice cream rating was successfully added.");
-            System.out.println("Rating ID: " + addUserIceCreamRatingResponse.getNewUserIceCreamRating().getId());
+            System.out.println("Rating ID: " + addIceCreamRatingResponse.getNewUserIceCreamRating().getId());
         }
 
     }

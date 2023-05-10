@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import rateIceCream.config.IceCreamListConfiguration;
+import rateIceCream.config.SpringCoreConfiguration;
 
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {IceCreamListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 public class SpringContextTest {
 
     @Autowired private ApplicationContext appContext;
