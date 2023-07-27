@@ -68,9 +68,14 @@ public class InMemoryIceCreamRepositoryImpl implements IceCreamRepository {
     }
 
     @Override
-    public IceCream findById(Long id) {
-        return iceCreams.stream()
-                .filter(iceCream -> iceCream.getId().equals(id))
+    public Optional<IceCream> findById(Long id) {
+        IceCream iceCream = iceCreams.stream()
+                .filter(iceCream1 -> iceCream1.getId().equals(id))
                 .findFirst().get();
+        if (iceCream == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(iceCream);
+        }
     }
 }

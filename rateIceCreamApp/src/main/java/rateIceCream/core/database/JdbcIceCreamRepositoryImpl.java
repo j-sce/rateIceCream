@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import rateIceCream.core.domain.IceCream;
 
 import java.util.List;
+import java.util.Optional;
 
 //@Component
 public class JdbcIceCreamRepositoryImpl implements IceCreamRepository {
@@ -63,9 +64,14 @@ public class JdbcIceCreamRepositoryImpl implements IceCreamRepository {
     }
 
     @Override
-    public IceCream findById(Long id) {
+    public Optional<IceCream> findById(Long id) {
         String sql = "SELECT * FROM ice_creams WHERE id = ?";
         Object[] args = new Object[]{id};
-        return jdbcTemplate.queryForObject(sql, args, new IceCreamRowMapper());
+        IceCream iceCream = jdbcTemplate.queryForObject(sql, args, new IceCreamRowMapper());
+        if (iceCream == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(iceCream);
+        }
     }
 }

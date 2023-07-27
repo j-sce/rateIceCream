@@ -24,6 +24,9 @@ public class IceCreamRating {
     @Column(name = "user_ice_cream_rating")
     private Long rating;
 
+    public IceCreamRating() {
+    }
+
     public IceCreamRating(User user, IceCream iceCream, Long rating) {
         this.user = user;
         this.iceCream = iceCream;

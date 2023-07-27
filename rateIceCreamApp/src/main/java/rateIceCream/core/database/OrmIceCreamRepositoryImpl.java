@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.domain.IceCream;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -71,7 +72,12 @@ public class OrmIceCreamRepositoryImpl implements IceCreamRepository {
     }
 
     @Override
-    public IceCream findById(Long id) {
-        return sessionFactory.getCurrentSession().get(IceCream.class, id);
+    public Optional<IceCream> findById(Long id) {
+        IceCream iceCream = sessionFactory.getCurrentSession().get(IceCream.class, id);
+        if (iceCream == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(iceCream);
+        }
     }
 }

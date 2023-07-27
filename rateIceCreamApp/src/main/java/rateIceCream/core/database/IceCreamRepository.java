@@ -3,6 +3,7 @@ package rateIceCream.core.database;
 import rateIceCream.core.domain.IceCream;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IceCreamRepository {
 
@@ -20,6 +21,6 @@ public interface IceCreamRepository {
 
     List<IceCream> findByBarcode(String barcode);
 
-    IceCream findById(Long id);
+    Optional<IceCream> findById(Long id);
 
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.database.IceCreamRepository;
-import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.requests.iceCreamRequests.GetIceCreamRequest;
 import rateIceCream.core.responses.iceCreamResponses.GetIceCreamResponse;
 import rateIceCream.core.validators.iceCreamValidators.GetIceCreamRequestValidator;
@@ -27,8 +26,11 @@ public class GetIceCreamService {
         if (!errors.isEmpty()) {
             return new GetIceCreamResponse(errors);
         }
-        IceCream iceCream = iceCreamRepository.findById(request.getIceCreamId());
-        return new GetIceCreamResponse(iceCream);
+        return iceCreamRepository.findById(request.getIceCreamId())
+                .map(GetIceCreamResponse::new)
+                .orElseGet(() -> {
+                    errors.add(new CoreError("ID", "not found!"));
+                    return new GetIceCreamResponse(errors);
+                });
     }
-
 }

@@ -34,14 +34,14 @@ public class AddIceCreamRatingController {
     public String showAddIceCreamRatingPage(ModelMap modelMap) {
         modelMap.addAttribute("getUserRequest", new GetUserRequest());
         modelMap.addAttribute("getIceCreamRequest", new GetIceCreamRequest());
-        modelMap.addAttribute("addUserIceCreamRatingRequest", new AddIceCreamRatingRequest());
+        modelMap.addAttribute("addIceCreamRatingRequest", new AddIceCreamRatingRequest());
         return "addIceCreamRating";
     }
 
     @PostMapping("/addIceCreamRating")
     public String processAddIceCreamRatingRequest(@ModelAttribute(value = "getUserRequest") GetUserRequest getUserRequest,
                                                   @ModelAttribute(value = "getIceCreamRequest") GetIceCreamRequest getIceCreamRequest,
-                                                  @ModelAttribute(value = "addUserIceCreamRatingRequest") AddIceCreamRatingRequest addIceCreamRatingRequest,
+                                                  @ModelAttribute(value = "addIceCreamRatingRequest") AddIceCreamRatingRequest addIceCreamRatingRequest,
                                                   ModelMap modelMap) {
         GetUserResponse getUserResponse = getUserService.execute(getUserRequest);
         if (getUserResponse.hasErrors()) {
@@ -49,7 +49,6 @@ public class AddIceCreamRatingController {
             return "addIceCreamRating";
         }
         User user = getUserResponse.getUser();
-
 
         GetIceCreamResponse getIceCreamResponse = getIceCreamService.execute(getIceCreamRequest);
         if (getIceCreamResponse.hasErrors()) {
