@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import rateIceCream.DatabaseCleaner;
+import rateIceCream.core.DatabaseCleaner;
 import rateIceCream.config.SpringCoreConfiguration;
 import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
 import rateIceCream.core.requests.iceCreamRequests.GetAllIceCreamsRequest;
@@ -16,6 +16,7 @@ import rateIceCream.core.services.iceCreamServices.GetAllIceCreamsService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class AcceptanceTestAddIceCream {
 
@@ -29,7 +30,7 @@ public class AcceptanceTestAddIceCream {
 
     @Test
     public void shouldAddIceCreamToList() {
-        AddIceCreamRequest addIceCreamRequest = new AddIceCreamRequest("Name1", "Producer1", "1234567890123");
+        AddIceCreamRequest addIceCreamRequest = new AddIceCreamRequest("Name1", "Producer1", "1234567890129");
         getAddIceCreamService().execute(addIceCreamRequest);
 
         GetAllIceCreamsResponse response = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());
@@ -38,7 +39,7 @@ public class AcceptanceTestAddIceCream {
 
     @Test
     public void shouldNotAddIceCreamToList() {
-        AddIceCreamRequest addIceCreamRequest = new AddIceCreamRequest(null, "Producer1", "1234567890123");
+        AddIceCreamRequest addIceCreamRequest = new AddIceCreamRequest(null, "Producer1", "1234567890130");
         getAddIceCreamService().execute(addIceCreamRequest);
         AddIceCreamResponse addIceCreamResponse = getAddIceCreamService().execute(addIceCreamRequest);
         GetAllIceCreamsResponse getAllIceCreamsResponse = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());
@@ -50,7 +51,7 @@ public class AcceptanceTestAddIceCream {
 
     @Test
     public void shouldNotAddSecondIceCreamToList() {
-        AddIceCreamRequest addIceCreamRequest = new AddIceCreamRequest("Name5", "Producer1", "1234567890123");
+        AddIceCreamRequest addIceCreamRequest = new AddIceCreamRequest("Name5", "Producer1", "1234567890132");
         getAddIceCreamService().execute(addIceCreamRequest);
 
         GetAllIceCreamsResponse getAllIceCreamsResponse = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());

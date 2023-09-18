@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.database.ProducerRepository;
+import rateIceCream.core.database.jpa.JpaProducerRepository;
 import rateIceCream.core.domain.Producer;
 import rateIceCream.core.requests.producerRequests.AddProducerRequest;
 import rateIceCream.core.responses.producerResponses.AddProducerResponse;
@@ -17,7 +18,7 @@ import java.util.List;
 public class AddProducerService {
 
     @Autowired
-    private ProducerRepository producerRepository;
+    private JpaProducerRepository producerRepository;
 
     @Autowired
     private AddProducerRequestValidator validator;

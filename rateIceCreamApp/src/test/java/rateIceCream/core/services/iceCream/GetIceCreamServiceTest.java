@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRepository;
+import rateIceCream.core.database.jpa.JpaIceCreamRepository;
 import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.requests.iceCreamRequests.GetIceCreamRequest;
 import rateIceCream.core.responses.iceCreamResponses.GetIceCreamResponse;
@@ -16,6 +16,7 @@ import rateIceCream.core.validators.iceCreamValidators.GetIceCreamRequestValidat
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -24,7 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
 class GetIceCreamServiceTest {
 
     @Mock
-    private IceCreamRepository iceCreamRepository;
+    private JpaIceCreamRepository iceCreamRepository;
 
     @Mock
     private GetIceCreamRequestValidator validator;
@@ -48,7 +49,7 @@ class GetIceCreamServiceTest {
     @Test
     public void shouldGetIceCreamByIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(iceCreamRepository.findById(1L)).thenReturn(new IceCream("IceCream1", "Producer1", "1234567890123"));
+        Mockito.when(iceCreamRepository.findById(1L)).thenReturn(Optional.of(new IceCream("IceCream1", "Producer1", "1234567890123")));
         GetIceCreamRequest request = new GetIceCreamRequest(1L);
         GetIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());

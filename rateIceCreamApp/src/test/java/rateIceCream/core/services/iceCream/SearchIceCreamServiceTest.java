@@ -6,9 +6,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRepository;
+import rateIceCream.core.database.jpa.JpaIceCreamRepository;
+import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.requests.Ordering;
 import rateIceCream.core.requests.Paging;
 import rateIceCream.core.requests.iceCreamRequests.SearchIceCreamRequest;
@@ -27,7 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 public class SearchIceCreamServiceTest {
 
     @Mock
-    private IceCreamRepository iceCreamRepository;
+    private JpaIceCreamRepository iceCreamRepository;
     @Mock
     private SearchIceCreamRequestValidator validator;
     @InjectMocks

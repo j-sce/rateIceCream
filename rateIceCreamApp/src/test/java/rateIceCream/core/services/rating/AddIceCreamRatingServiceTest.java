@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRatingRepository;
+import rateIceCream.core.database.jpa.JpaIceCreamRatingRepository;
 import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.domain.User;
 import rateIceCream.core.requests.ratingRequests.AddIceCreamRatingRequest;
@@ -27,7 +27,7 @@ import static rateIceCream.core.domain.UserRole.USER;
 class AddIceCreamRatingServiceTest {
 
     @Mock
-    private IceCreamRatingRepository repository;
+    private JpaIceCreamRatingRepository repository;
 
     @Mock
     private AddIceCreamRatingRequestValidator validator;

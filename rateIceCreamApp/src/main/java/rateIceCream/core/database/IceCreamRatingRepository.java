@@ -11,8 +11,8 @@ import rateIceCream.core.domain.IceCreamRating;
 import java.util.List;
 
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class IceCreamRatingRepository {
 
     @Autowired

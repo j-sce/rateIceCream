@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRepository;
+import rateIceCream.core.database.jpa.JpaIceCreamRepository;
 import rateIceCream.core.requests.iceCreamRequests.GetIceCreamRequest;
 import rateIceCream.core.responses.iceCreamResponses.GetIceCreamResponse;
 import rateIceCream.core.validators.iceCreamValidators.GetIceCreamRequestValidator;
@@ -16,7 +16,7 @@ import java.util.List;
 public class GetIceCreamService {
 
     @Autowired
-    private IceCreamRepository iceCreamRepository;
+    private JpaIceCreamRepository iceCreamRepository;
 
     @Autowired
     private GetIceCreamRequestValidator validator;

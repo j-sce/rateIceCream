@@ -3,7 +3,7 @@ package rateIceCream.core.services.userServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.UserRepository;
+import rateIceCream.core.database.jpa.JpaUserRepository;
 import rateIceCream.core.domain.User;
 import rateIceCream.core.requests.userRequests.RegisterUserRequest;
 import rateIceCream.core.responses.userResponses.RegisterUserResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 public class RegisterUserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private JpaUserRepository userRepository;
 
     @Autowired
     private RegisterUserRequestValidator validator;
@@ -26,7 +26,7 @@ public class RegisterUserService {
             return new RegisterUserResponse(errors);
         }
         User user = new User(request.getLogin(), request.getPassword(), request.getUserRole());
-        userRepository.register(user);
+        userRepository.save(user);
         return new RegisterUserResponse(user);
     }
 }

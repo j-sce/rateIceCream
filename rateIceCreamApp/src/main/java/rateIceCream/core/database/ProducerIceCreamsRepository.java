@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.domain.ProducerIceCreams;
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class ProducerIceCreamsRepository {
 
     @Autowired

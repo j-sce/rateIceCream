@@ -6,8 +6,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import rateIceCream.core.database.jpa.JpaIceCreamRepository;
 import rateIceCream.core.domain.IceCream;
-import rateIceCream.core.database.IceCreamRepository;
 import rateIceCream.core.requests.iceCreamRequests.GetAllIceCreamsRequest;
 import rateIceCream.core.responses.iceCreamResponses.GetAllIceCreamsResponse;
 import rateIceCream.core.services.iceCreamServices.GetAllIceCreamsService;
@@ -15,12 +15,13 @@ import rateIceCream.core.services.iceCreamServices.GetAllIceCreamsService;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @ExtendWith(MockitoExtension.class)
 class GetAllIceCreamsServiceTest {
     @Mock
-    private IceCreamRepository iceCreamRepository;
+    private JpaIceCreamRepository iceCreamRepository;
     @InjectMocks
     private GetAllIceCreamsService service;
 
@@ -30,7 +31,7 @@ class GetAllIceCreamsServiceTest {
         List<IceCream> iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream("Name", "Producer", "1234567890123"));
         iceCreams.add(new IceCream("Name2", "Producer2", "2345678901234"));
-        Mockito.when(iceCreamRepository.getAllIceCreams()).thenReturn(iceCreams);
+        Mockito.when(iceCreamRepository.findAll()).thenReturn(iceCreams);
 
         GetAllIceCreamsRequest request = new GetAllIceCreamsRequest();
         GetAllIceCreamsResponse response = service.execute(request);

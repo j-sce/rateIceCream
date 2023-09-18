@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRatingRepository;
+import rateIceCream.core.database.jpa.JpaIceCreamRatingRepository;
 import rateIceCream.core.domain.IceCreamRating;
 import rateIceCream.core.requests.ratingRequests.AddIceCreamRatingRequest;
 import rateIceCream.core.responses.ratingResponses.AddIceCreamRatingResponse;
@@ -17,15 +17,15 @@ import java.util.List;
 public class AddIceCreamRatingService {
 
     @Autowired
-    private IceCreamRatingRepository iceCreamRatingRepository;
+    private JpaIceCreamRatingRepository iceCreamRatingRepository;
 
     @Autowired
     private AddIceCreamRatingRequestValidator validator;
 
-    public AddIceCreamRatingResponse execute (AddIceCreamRatingRequest request){
+    public AddIceCreamRatingResponse execute(AddIceCreamRatingRequest request) {
         List<CoreError> errors = validator.validate(request);
 
-        if (!errors.isEmpty()){
+        if (!errors.isEmpty()) {
             return new AddIceCreamRatingResponse(errors);
         }
 

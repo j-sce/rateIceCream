@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.UserRepository;
+import rateIceCream.core.database.jpa.JpaUserRepository;
 import rateIceCream.core.domain.User;
 import rateIceCream.core.requests.userRequests.GetUserRequest;
 import rateIceCream.core.responses.userResponses.GetUserResponse;
@@ -16,6 +16,7 @@ import rateIceCream.core.validators.userValidators.GetUserRequestValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -25,7 +26,7 @@ import static rateIceCream.core.domain.UserRole.USER;
 class GetUserServiceTest {
 
     @Mock
-    private UserRepository repository;
+    private JpaUserRepository repository;
 
     @Mock
     private GetUserRequestValidator validator;
@@ -49,7 +50,7 @@ class GetUserServiceTest {
     @Test
     public void shouldGetUserByIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(repository.findById(1L)).thenReturn(new User("Login1", "Password1", USER));
+        Mockito.when(repository.findById(1L)).thenReturn(Optional.of(new User("Login1", "Password1", USER)));
         GetUserRequest request = new GetUserRequest(1L);
         GetUserResponse response = service.execute(request);
         assertFalse(response.hasErrors());

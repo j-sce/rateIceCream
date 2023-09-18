@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.UserRepository;
+import rateIceCream.core.database.jpa.JpaUserRepository;
 import rateIceCream.core.domain.UserRole;
 import rateIceCream.core.requests.userRequests.RegisterUserRequest;
 import rateIceCream.core.responses.userResponses.RegisterUserResponse;
@@ -26,7 +26,7 @@ import static org.mockito.ArgumentMatchers.argThat;
 class RegisterUserServiceTest {
 
     @Mock
-    private UserRepository userRepository;
+    private JpaUserRepository userRepository;
 
     @Mock
     private RegisterUserRequestValidator validator;
@@ -56,7 +56,7 @@ class RegisterUserServiceTest {
         RegisterUserRequest request = new RegisterUserRequest("Login", "password", UserRole.USER);
         RegisterUserResponse response = registerUserService.execute(request);
         assertFalse(response.hasErrors());
-        Mockito.verify(userRepository).register(
+        Mockito.verify(userRepository).save(
                 argThat(new UserMatcher("Login", "password", UserRole.USER)));
     }
 }

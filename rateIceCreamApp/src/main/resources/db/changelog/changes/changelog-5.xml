@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <changeSet author="j-sce" id="6">
+        <createTable tableName="user_ice_cream_ratings">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ice_cream_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_ice_cream_rating" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="user_ice_cream_ratings"
+                       cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="j-sce" id="7">
+        <addForeignKeyConstraint baseTableName="user_ice_cream_ratings"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_user_ice_cream_ratings_user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="user_ice_cream_ratings"
+                                      constraintName="fk_user_ice_cream_ratings_user_id"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="j-sce" id="5">
+        <addForeignKeyConstraint baseTableName="user_ice_cream_ratings"
+                                 baseColumnNames="ice_cream_id"
+                                 constraintName="fk_user_ice_cream_ratings_ice_cream_id"
+                                 referencedTableName="ice_creams"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="user_ice_cream_ratings"
+                                      constraintName="fk_user_ice_cream_ratings_ice_cream_id"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

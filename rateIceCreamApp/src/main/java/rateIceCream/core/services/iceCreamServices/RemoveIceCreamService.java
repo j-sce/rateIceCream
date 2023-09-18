@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRepository;
+import rateIceCream.core.database.jpa.JpaIceCreamRepository;
 import rateIceCream.core.requests.iceCreamRequests.RemoveIceCreamRequest;
 import rateIceCream.core.responses.iceCreamResponses.RemoveIceCreamResponse;
 import rateIceCream.core.validators.iceCreamValidators.RemoveIceCreamRequestValidator;
@@ -16,7 +16,7 @@ import java.util.List;
 public class RemoveIceCreamService {
 
     @Autowired
-    private IceCreamRepository iceCreamRepository;
+    private JpaIceCreamRepository iceCreamRepository;
 
     @Autowired
     private RemoveIceCreamRequestValidator validator;
@@ -26,7 +26,7 @@ public class RemoveIceCreamService {
         if (!errors.isEmpty()) {
             return new RemoveIceCreamResponse(errors);
         }
-        boolean isIceCreamRemoved = iceCreamRepository.deleteById(request.getIceCreamIdToRemove());
-        return new RemoveIceCreamResponse(isIceCreamRemoved);
+        iceCreamRepository.deleteById(request.getIceCreamIdToRemove());
+        return new RemoveIceCreamResponse(true);
     }
 }

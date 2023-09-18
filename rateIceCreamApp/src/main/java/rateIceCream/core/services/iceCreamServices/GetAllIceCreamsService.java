@@ -3,6 +3,7 @@ package rateIceCream.core.services.iceCreamServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import rateIceCream.core.database.jpa.JpaIceCreamRepository;
 import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.database.IceCreamRepository;
 import rateIceCream.core.requests.iceCreamRequests.GetAllIceCreamsRequest;
@@ -15,10 +16,10 @@ import java.util.List;
 public class GetAllIceCreamsService {
 
     @Autowired
-    private IceCreamRepository iceCreamRepository;
+    private JpaIceCreamRepository iceCreamRepository;
 
     public GetAllIceCreamsResponse execute(GetAllIceCreamsRequest request) {
-        List<IceCream> iceCreams = iceCreamRepository.getAllIceCreams();
+        List<IceCream> iceCreams = iceCreamRepository.findAll();
         return new GetAllIceCreamsResponse(iceCreams);
     }
 }

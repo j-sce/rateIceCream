@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <changeSet author="j-sce" id="3">
+        <createTable tableName="producer_ice_creams">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="producer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ice_cream_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="producer_ice_creams"
+                       cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="j-sce" id="4">
+        <addForeignKeyConstraint baseTableName="producer_ice_creams"
+                                 baseColumnNames="producer_id"
+                                 constraintName="fk_producer_ice_creams_producer_id"
+                                 referencedTableName="producers"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="producer_ice_creams"
+                                      constraintName="fk_producer_ice_creams_producer_id"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="j-sce" id="5">
+        <addForeignKeyConstraint baseTableName="producer_ice_creams"
+                                 baseColumnNames="ice_cream_id"
+                                 constraintName="fk_producer_ice_creams_ice_cream_id"
+                                 referencedTableName="ice_creams"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="producer_ice_creams"
+                                      constraintName="fk_producer_ice_creams_ice_cream_id"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

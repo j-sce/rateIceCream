@@ -3,19 +3,17 @@ package rateIceCream.core.services.iceCream;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRepository;
-import rateIceCream.core.services.iceCreamServices.AddIceCreamService;
-import rateIceCream.matchers.IceCreamMatcher;
+import rateIceCream.core.database.jpa.JpaIceCreamRepository;
 import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
 import rateIceCream.core.responses.iceCreamResponses.AddIceCreamResponse;
+import rateIceCream.core.services.iceCreamServices.AddIceCreamService;
 import rateIceCream.core.validators.iceCreamValidators.AddIceCreamRequestValidator;
+import rateIceCream.matchers.IceCreamMatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ import static org.mockito.ArgumentMatchers.argThat;
 @ExtendWith(MockitoExtension.class)
 public class AddIceCreamServiceTest {
     @Mock
-    private IceCreamRepository iceCreamRepository;
+    private JpaIceCreamRepository iceCreamRepository;
     @Mock
     private AddIceCreamRequestValidator validator;
     @InjectMocks private AddIceCreamService service;
@@ -55,7 +53,7 @@ public class AddIceCreamServiceTest {
         AddIceCreamResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         Mockito.verify(iceCreamRepository).save(
-                argThat(new IceCreamMatcher("Name", "Producer1", "1234567890123")));
+                argThat(new IceCreamMatcher("Name", "Producer1", "0123456789012")));
     }
 
 }

@@ -10,8 +10,8 @@ import rateIceCream.core.domain.Producer;
 import java.util.List;
 
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class ProducerRepository {
 
     @Autowired

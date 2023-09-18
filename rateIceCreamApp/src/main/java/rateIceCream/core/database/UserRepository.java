@@ -9,8 +9,8 @@ import rateIceCream.core.domain.User;
 
 import java.util.List;
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class UserRepository {
 
     @Autowired

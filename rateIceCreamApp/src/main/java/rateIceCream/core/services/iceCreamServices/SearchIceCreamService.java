@@ -3,9 +3,9 @@ package rateIceCream.core.services.iceCreamServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.IceCreamRepository;
+import rateIceCream.core.database.jpa.JpaIceCreamRepository;
+import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.requests.Ordering;
 import rateIceCream.core.requests.Paging;
 import rateIceCream.core.requests.iceCreamRequests.SearchIceCreamRequest;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class SearchIceCreamService {
 
     @Autowired
-    private IceCreamRepository iceCreamRepository;
+    private JpaIceCreamRepository iceCreamRepository;
     @Autowired
     private SearchIceCreamRequestValidator validator;
 

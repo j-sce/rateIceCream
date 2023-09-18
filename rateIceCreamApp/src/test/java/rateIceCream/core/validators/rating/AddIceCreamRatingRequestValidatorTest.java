@@ -1,10 +1,11 @@
-package rateIceCream.core.validators.ratingValidators;
+package rateIceCream.core.validators.rating;
 
 import org.junit.jupiter.api.Test;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.domain.IceCream;
 import rateIceCream.core.domain.User;
 import rateIceCream.core.requests.ratingRequests.AddIceCreamRatingRequest;
+import rateIceCream.core.validators.ratingValidators.AddIceCreamRatingRequestValidator;
 
 import java.util.List;
 

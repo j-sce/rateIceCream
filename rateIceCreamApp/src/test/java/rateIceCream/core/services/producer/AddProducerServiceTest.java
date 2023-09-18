@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.ProducerRepository;
+import rateIceCream.core.database.jpa.JpaProducerRepository;
 import rateIceCream.core.requests.producerRequests.AddProducerRequest;
 import rateIceCream.core.responses.producerResponses.AddProducerResponse;
 import rateIceCream.core.services.producerServices.AddProducerService;
@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.argThat;
 class AddProducerServiceTest {
 
     @Mock
-    private ProducerRepository producerRepository;
+    private JpaProducerRepository producerRepository;
 
     @Mock
     private AddProducerRequestValidator validator;

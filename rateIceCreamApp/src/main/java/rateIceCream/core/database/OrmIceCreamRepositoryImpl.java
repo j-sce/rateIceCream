@@ -10,8 +10,8 @@ import rateIceCream.core.domain.IceCream;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class OrmIceCreamRepositoryImpl implements IceCreamRepository {
 
     @Autowired

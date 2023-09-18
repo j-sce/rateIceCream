@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import rateIceCream.DatabaseCleaner;
+import rateIceCream.core.DatabaseCleaner;
 import rateIceCream.config.SpringCoreConfiguration;
 import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
 import rateIceCream.core.requests.iceCreamRequests.GetAllIceCreamsRequest;
@@ -36,7 +36,7 @@ public class AcceptanceTestRemoveIceCream {
         GetAllIceCreamsResponse response = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());
         assertEquals(response.getIceCreams().size(), 2);
 
-        RemoveIceCreamRequest removeIceCreamRequest = new RemoveIceCreamRequest(1005L);
+        RemoveIceCreamRequest removeIceCreamRequest = new RemoveIceCreamRequest(1020L);
         getRemoveIceCreamService().execute(removeIceCreamRequest);
         response = getAllIceCreamsService().execute(new GetAllIceCreamsRequest());
         assertEquals(response.getIceCreams().size(), 1);
