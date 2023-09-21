@@ -15,12 +15,11 @@ public class RegisterUserRequestValidator {
         List<CoreError> errors = new ArrayList<>();
         validateLogin(request).ifPresent(errors::add);
         validatePassword(request).ifPresent(errors::add);
-        validateRole(request).ifPresent(errors::add);
         return errors;
     }
 
     private Optional<CoreError> validateLogin(RegisterUserRequest request) {
-        return (request.getLogin() == null || request.getLogin().isEmpty())
+        return (request.getUsername() == null || request.getUsername().isEmpty())
                 ? Optional.of(new CoreError("Login", "must not be empty!"))
                 : Optional.empty();
     }
@@ -31,9 +30,4 @@ public class RegisterUserRequestValidator {
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateRole(RegisterUserRequest request) {
-        return (request.getUserRole() == null)
-                ? Optional.of(new CoreError("User role", "must not be empty!"))
-                : Optional.empty();
-    }
 }

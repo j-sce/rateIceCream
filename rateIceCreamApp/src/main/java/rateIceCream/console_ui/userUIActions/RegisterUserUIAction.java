@@ -3,7 +3,6 @@ package rateIceCream.console_ui.userUIActions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import rateIceCream.console_ui.UIAction;
-import rateIceCream.core.domain.UserRole;
 import rateIceCream.core.requests.userRequests.RegisterUserRequest;
 import rateIceCream.core.responses.userResponses.RegisterUserResponse;
 import rateIceCream.core.services.userServices.RegisterUserService;
@@ -23,15 +22,9 @@ public class RegisterUserUIAction implements UIAction {
         String userLogin = scanner.nextLine();
         System.out.println("Enter password: ");
         String userPassword = scanner.nextLine();
-        System.out.println("Enter user role (ADMIN|USER): ");
-        String userRole = scanner.nextLine();
 
-        RegisterUserRequest request;
-        if (userRole.equals("ADMIN")) {
-            request = new RegisterUserRequest(userLogin, userPassword, UserRole.ADMIN);
-        } else {
-            request = new RegisterUserRequest(userLogin, userPassword, UserRole.USER);
-        }
+
+        RegisterUserRequest request = new RegisterUserRequest(userLogin, userPassword);
 
         RegisterUserResponse response = registerUserService.execute(request);
         if (response.hasErrors()) {

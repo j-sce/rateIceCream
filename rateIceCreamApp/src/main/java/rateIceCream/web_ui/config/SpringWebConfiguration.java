@@ -12,7 +12,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages ="rateIceCream")
+@ComponentScan(basePackages = "rateIceCream")
 public class SpringWebConfiguration implements WebMvcConfigurer {
 
     @Override
@@ -31,5 +31,4 @@ public class SpringWebConfiguration implements WebMvcConfigurer {
         resourceViewResolver.setCheckExistence(false);
         return resourceViewResolver;
     }
-
 }

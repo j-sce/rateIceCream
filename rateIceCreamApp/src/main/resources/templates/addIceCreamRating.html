@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
   <meta charset="UTF-8">
@@ -24,9 +25,9 @@
 
   <tr>
     <form action="/addIceCreamRating" th:object="${request}" method="post">
-      <td><input type="text" th:field="${getUserRequest.userId}"/></td>
-      <td><input type="text" th:field="${getIceCreamRequest.iceCreamId}"/></td>
-      <td><input type="text" th:field="${addIceCreamRatingRequest.rating}"/></td>
+      <td><input type="number" th:field="${getUserRequest.userId}"/></td>
+      <td><input type="number" th:field="${getIceCreamRequest.iceCreamId}"/></td>
+      <td><input type="number" th:field="${addIceCreamRatingRequest.rating}"/></td>
       <td>
         <input type="submit" value="Add"/>
         <input type="reset" value="Clear"/>

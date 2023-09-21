@@ -2,6 +2,7 @@ package rateIceCream.core.domain;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -12,23 +13,42 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "login", nullable = false)
-    private String login;
+    @Column(name = "username", nullable = false)
+    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private UserRole userRole;
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
 
-    public User() {
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
+
+
+    public User(String username, String password, boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
     }
 
-    public User(String login, String password, UserRole userRole) {
-        this.login = login;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
-        this.userRole = userRole;
+    }
+
+    public User(String username, String password, boolean enabled, Set<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
+
+    public User() {
     }
 
     public Long getId() {
@@ -39,12 +59,12 @@ public class User {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -55,34 +75,42 @@ public class User {
         this.password = password;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return getId().equals(user.getId()) && getLogin().equals(user.getLogin()) && getPassword().equals(user.getPassword()) && getUserRole() == user.getUserRole();
+        if (!(o instanceof User user)) return false;
+        return isEnabled() == user.isEnabled() && getId().equals(user.getId()) && getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) && getRoles().equals(user.getRoles());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getLogin(), getPassword(), getUserRole());
+        return Objects.hash(getId(), getUsername(), getPassword(), isEnabled(), getRoles());
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", login='" + login + '\'' +
+                ", login='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", userRole=" + userRole +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
                 '}';
     }
 }

@@ -52,3 +52,23 @@ values ('Magnum ar mandelēm 120ml', 'Unilever Poland S.A.', '8000920500224');
 
 insert into ice_creams(name, producer, barcode)
 values ('Pols vaniļas cepumā 140ml', 'Rīgas Piena Kombināts A/S', '4750025898736');
+
+
+insert into roles (name)
+values ('ADMIN');
+
+insert into roles (name)
+values ('USER');
+
+insert into roles (name)
+values ('STAFF');
+
+
+
+INSERT INTO `users` (`username`, `password`, `enabled`) VALUES ('staff', '$2a$10$cTUErxQqYVyU2qmQGIktpup5chLEdhD2zpzNEyYqmxrHHJbSNDOG.', 1);
+INSERT INTO `users` (`username`, `password`, `enabled`) VALUES ('user', '$2a$10$.tP2OH3dEG0zms7vek4ated5AiQ.EGkncii0OpCcGq4bckS9NOULu', 1);
+INSERT INTO `users` (`username`, `password`, `enabled`) VALUES ('admin', '$2a$10$IqTJTjn39IU5.7sSCDQxzu3xug6z/LPU6IF0azE/8CkHCwYEnwBX.', 1);
+
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (1, 3);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (2, 2);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (3, 1);

@@ -1,4 +1,4 @@
-package rateIceCream.core.database;
+package rateIceCream.core.database.non_jpa;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

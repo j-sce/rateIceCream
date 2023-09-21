@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.database.jpa.JpaIceCreamRatingRepository;
 import rateIceCream.core.domain.IceCream;
+import rateIceCream.core.domain.Role;
 import rateIceCream.core.domain.User;
 import rateIceCream.core.requests.ratingRequests.AddIceCreamRatingRequest;
 import rateIceCream.core.responses.ratingResponses.AddIceCreamRatingResponse;
@@ -20,7 +21,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static rateIceCream.core.domain.UserRole.USER;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -51,7 +51,7 @@ class AddIceCreamRatingServiceTest {
 
     @Test
     public void shouldReturnErrorWhenIceCreamIdNotProvided() {
-        User user = new User("Login1", "Password1", USER);
+        User user = new User("Login1", "Password1");
         AddIceCreamRatingRequest request = new AddIceCreamRatingRequest(user, null, 5L);
         List<CoreError> errors = new ArrayList<>();
         errors.add(new CoreError("IceCream ID", "must not be empty!"));
@@ -65,7 +65,7 @@ class AddIceCreamRatingServiceTest {
 
     @Test
     public void shouldReturnErrorWhenRatingNotProvided() {
-        User user = new User("Login1", "Password1", USER);
+        User user = new User("Login1", "Password1");
         IceCream iceCream = new IceCream("IceCream1", "Producer1", "1234567890123");
         AddIceCreamRatingRequest request = new AddIceCreamRatingRequest(user, iceCream, null);
         List<CoreError> errors = new ArrayList<>();
@@ -80,7 +80,7 @@ class AddIceCreamRatingServiceTest {
 
     @Test
     public void shouldReturnErrorWhenRatingIsZero() {
-        User user = new User("Login1", "Password1", USER);
+        User user = new User("Login1", "Password1");
         IceCream iceCream = new IceCream("IceCream1", "Producer1", "1234567890123");
         AddIceCreamRatingRequest request = new AddIceCreamRatingRequest(user, iceCream, 0L);
         List<CoreError> errors = new ArrayList<>();

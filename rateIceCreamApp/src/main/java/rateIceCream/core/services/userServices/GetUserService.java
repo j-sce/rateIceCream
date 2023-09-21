@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.CoreError;
-import rateIceCream.core.database.UserRepository;
 import rateIceCream.core.database.jpa.JpaUserRepository;
 import rateIceCream.core.domain.User;
 import rateIceCream.core.requests.userRequests.GetUserRequest;

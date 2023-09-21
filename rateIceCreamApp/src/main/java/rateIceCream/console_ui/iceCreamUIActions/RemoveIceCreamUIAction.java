@@ -18,8 +18,18 @@ public class RemoveIceCreamUIAction implements UIAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter ice cream ID to remove: ");
-        Long iceCreamId = Long.parseLong(scanner.nextLine());//TODO NumberFormatException, NullPointerException
+        Long iceCreamId = 0L;
+        while (true) {
+            System.out.println("Enter ice cream ID to remove: ");
+            try {
+                iceCreamId = Long.parseLong(scanner.nextLine());
+
+                break;
+            } catch (NumberFormatException | NullPointerException e) {
+                System.out.println("Exception occurred");
+            }
+        }
+
         RemoveIceCreamRequest request = new RemoveIceCreamRequest(iceCreamId);
         RemoveIceCreamResponse response = removeIceCreamService.execute(request);
 

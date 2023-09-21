@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rateIceCream.core.database.jpa.JpaIceCreamRepository;
 import rateIceCream.core.domain.IceCream;
-import rateIceCream.core.database.IceCreamRepository;
 import rateIceCream.core.requests.iceCreamRequests.GetAllIceCreamsRequest;
 import rateIceCream.core.responses.iceCreamResponses.GetAllIceCreamsResponse;
 

@@ -1,44 +1,32 @@
 package rateIceCream.core.requests.userRequests;
 
-import rateIceCream.core.domain.UserRole;
-
 public class RegisterUserRequest {
 
-    private String login;
+    private String username;
     private String password;
 
-    private UserRole userRole;
 
     public RegisterUserRequest() {
     }
 
-    public RegisterUserRequest(String login, String password, UserRole userRole) {
-        this.login = login;
+    public RegisterUserRequest(String username, String password) {
+        this.username = username;
         this.password = password;
-        this.userRole = userRole;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
     }
 }

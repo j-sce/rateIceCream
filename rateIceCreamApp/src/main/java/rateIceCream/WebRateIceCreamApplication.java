@@ -14,6 +14,7 @@ public class WebRateIceCreamApplication {
 
         ConfigurableApplicationContext context = SpringApplication.run(SpringWebConfiguration.class);
 
+
         AppMenu appMenu = context.getBean(AppMenu.class);
         while (true) {
             appMenu.printAppMenu();

@@ -26,7 +26,7 @@ public class SearchIceCreamUIAction implements UIAction {
         System.out.println("Enter ice cream producer");
         String producer = scanner.nextLine();
         System.out.println("Enter ice cream barcode");
-        String barcode = scanner.nextLine();; //TODO NumberFormatException;
+        String barcode = scanner.nextLine();
 
         System.out.println("Do you wish to add ordering and paging? O|P|OP|N (Ordering|Paging|Ordering and Paging|None):");
         String orderChoice = scanner.nextLine();

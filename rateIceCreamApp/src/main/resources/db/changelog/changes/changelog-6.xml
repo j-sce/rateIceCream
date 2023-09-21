@@ -3,25 +3,19 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <changeSet author="j-sce" id="5">
-        <createTable tableName="users">
+    <changeSet author="j-sce" id="8">
+        <createTable tableName="roles">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="username" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="password" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="enabled" type="tinyint(4)">
+            <column name="name" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
         <rollback>
-            <dropTable tableName="users"
+            <dropTable tableName="roles"
                        cascadeConstraints="true"/>
         </rollback>
     </changeSet>

@@ -25,7 +25,7 @@ public class RegisterUserService {
         if (!errors.isEmpty()) {
             return new RegisterUserResponse(errors);
         }
-        User user = new User(request.getLogin(), request.getPassword(), request.getUserRole());
+        User user = new User(request.getUsername(), request.getPassword());
         userRepository.save(user);
         return new RegisterUserResponse(user);
     }

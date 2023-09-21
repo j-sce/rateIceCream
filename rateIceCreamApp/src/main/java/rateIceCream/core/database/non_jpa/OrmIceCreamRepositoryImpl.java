@@ -1,10 +1,9 @@
-package rateIceCream.core.database;
+package rateIceCream.core.database.non_jpa;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import rateIceCream.core.database.non_jpa.IceCreamRepository;
 import rateIceCream.core.domain.IceCream;
 
 import java.util.List;

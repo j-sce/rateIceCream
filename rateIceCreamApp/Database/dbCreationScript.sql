@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `producers` (
   PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
-AUTO_INCREMENT = 1001;
+AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `ice_creams` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ice_creams` (
   FOREIGN KEY (`producer`) REFERENCES `producers`(`name`)
 )
 ENGINE = InnoDB
-AUTO_INCREMENT = 1001;
+AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `producer_ice_creams` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -33,17 +33,17 @@ CREATE TABLE IF NOT EXISTS `producer_ice_creams` (
    FOREIGN KEY (`ice_cream_id`) REFERENCES `ice_creams`(`id`)
 )
 ENGINE = InnoDB
-AUTO_INCREMENT = 1001;
+AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `login` VARCHAR(100) NOT NULL UNIQUE,
+  `username` VARCHAR(100) NOT NULL UNIQUE,
   `password` VARCHAR(100) NOT NULL,
-  `role` VARCHAR(100) NOT NULL,
+   `enabled` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
-AUTO_INCREMENT = 1001;
+AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `user_ice_cream_ratings` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -55,7 +55,28 @@ CREATE TABLE IF NOT EXISTS `user_ice_cream_ratings` (
   FOREIGN KEY (`ice_cream_id`) REFERENCES `ice_creams`(`id`)
 )
 ENGINE = InnoDB
-AUTO_INCREMENT = 1001;
+AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL UNIQUE,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+
+
+CREATE TABLE IF NOT EXISTS `users_roles` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT NOT NULL,
+  `role_id` BIGINT NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
+  FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`)
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+
 
 CREATE INDEX ix_producer_ice_creams_producer_id
 ON producer_ice_creams (producer_id);
@@ -69,6 +90,13 @@ ON user_ice_cream_ratings (user_id);
 
 CREATE INDEX ix_user_ice_cream_ratings_ice_cream_id
 ON user_ice_cream_ratings (ice_cream_id);
+
+CREATE INDEX ix_users_roles_user_id
+ON users_roles (user_id);
+
+CREATE INDEX ix_users_roles_role_id
+ON users_roles (role_id);
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

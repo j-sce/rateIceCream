@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.database.jpa.JpaUserRepository;
-import rateIceCream.core.domain.UserRole;
+import rateIceCream.core.domain.Role;
 import rateIceCream.core.requests.userRequests.RegisterUserRequest;
 import rateIceCream.core.responses.userResponses.RegisterUserResponse;
 import rateIceCream.core.services.userServices.RegisterUserService;
@@ -36,7 +36,7 @@ class RegisterUserServiceTest {
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFails() {
-        RegisterUserRequest request = new RegisterUserRequest(null, "password", UserRole.USER);
+        RegisterUserRequest request = new RegisterUserRequest(null, "password");
         List<CoreError> errors = new ArrayList<>();
         errors.add(new CoreError("Login", "must not be empty!"));
         Mockito.when(validator.validate(request)).thenReturn(errors);
@@ -53,10 +53,12 @@ class RegisterUserServiceTest {
     @Test
     public void shouldRegisterUserInDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        RegisterUserRequest request = new RegisterUserRequest("Login", "password", UserRole.USER);
+        RegisterUserRequest request = new RegisterUserRequest("Login", "password");
         RegisterUserResponse response = registerUserService.execute(request);
         assertFalse(response.hasErrors());
         Mockito.verify(userRepository).save(
-                argThat(new UserMatcher("Login", "password", UserRole.USER)));
+                argThat(new UserMatcher("Login", "password") {
+                }));
     }
+
 }

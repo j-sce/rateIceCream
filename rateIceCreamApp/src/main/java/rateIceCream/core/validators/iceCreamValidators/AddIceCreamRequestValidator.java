@@ -7,6 +7,8 @@ import rateIceCream.core.requests.iceCreamRequests.AddIceCreamRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class AddIceCreamRequestValidator {
@@ -16,6 +18,7 @@ public class AddIceCreamRequestValidator {
         validateName(request).ifPresent(errors::add);
         validateProducer(request).ifPresent(errors::add);
         validateBarcode(request).ifPresent(errors::add);
+        validateBarcodeIsEAN13(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -34,6 +37,15 @@ public class AddIceCreamRequestValidator {
     private Optional<CoreError> validateBarcode(AddIceCreamRequest request) {
         return (request.getBarcode() == null || request.getBarcode().isEmpty())
                 ? Optional.of(new CoreError("Barcode", "must not be empty!"))
+                : Optional.empty();
+    }
+
+    private Optional<CoreError> validateBarcodeIsEAN13(AddIceCreamRequest request) {
+        Pattern pattern = Pattern.compile("^[0-9]{13}$");
+        Matcher matcher = pattern.matcher(request.getBarcode());
+
+        return (!matcher.find())
+                ? Optional.of(new CoreError("Barcode", "must be in EAN13 format."))
                 : Optional.empty();
     }
 }

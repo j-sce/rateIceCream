@@ -3,14 +3,15 @@ package rateIceCream.core.validators.rating;
 import org.junit.jupiter.api.Test;
 import rateIceCream.core.CoreError;
 import rateIceCream.core.domain.IceCream;
+import rateIceCream.core.domain.Role;
 import rateIceCream.core.domain.User;
 import rateIceCream.core.requests.ratingRequests.AddIceCreamRatingRequest;
 import rateIceCream.core.validators.ratingValidators.AddIceCreamRatingRequestValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static rateIceCream.core.domain.UserRole.USER;
 
 class AddIceCreamRatingRequestValidatorTest {
 
@@ -28,7 +29,7 @@ class AddIceCreamRatingRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorWhenIceCreamIdIsEmpty() {
-        User user = new User("Login1", "Password1", USER);
+        User user = new User("Login1", "Password1");
         AddIceCreamRatingRequest request = new AddIceCreamRatingRequest(user, null, 5L);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
@@ -38,7 +39,7 @@ class AddIceCreamRatingRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorWhenRatingIsEmpty() {
-        User user = new User("Login1", "Password1", USER);
+        User user = new User("Login1", "Password1");
         IceCream iceCream = new IceCream("Name1", "Producer1", "1234567890123");
         AddIceCreamRatingRequest request = new AddIceCreamRatingRequest(user, iceCream, null);
         List<CoreError> errors = validator.validate(request);
@@ -49,7 +50,7 @@ class AddIceCreamRatingRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorWhenRatingIsZero() {
-        User user = new User("Login1", "Password1", USER);
+        User user = new User("Login1", "Password1");
         IceCream iceCream = new IceCream("Name1", "Producer1", "1234567890123");
         AddIceCreamRatingRequest request = new AddIceCreamRatingRequest(user, iceCream, 0L);
         List<CoreError> errors = validator.validate(request);
@@ -60,7 +61,7 @@ class AddIceCreamRatingRequestValidatorTest {
 
     @Test
     public void shouldSuccess() {
-        User user = new User("Login1", "Password1", USER);
+        User user = new User("Login1", "Password1");
         IceCream iceCream = new IceCream("Name1", "Producer1", "1234567890123");
         AddIceCreamRatingRequest request = new AddIceCreamRatingRequest(user, iceCream, 5L);
         List<CoreError> errors = validator.validate(request);

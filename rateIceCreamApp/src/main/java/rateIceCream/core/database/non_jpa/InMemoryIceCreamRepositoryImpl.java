@@ -1,5 +1,6 @@
-package rateIceCream.core.database;
+package rateIceCream.core.database.non_jpa;
 
+import rateIceCream.core.database.non_jpa.IceCreamRepository;
 import rateIceCream.core.domain.IceCream;
 
 import java.util.ArrayList;
